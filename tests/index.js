@@ -11,7 +11,7 @@ describe('server', function () {
 
   describe('get index', function(){
     it('should respond to GET',function(done) {
-      request(app)
+      request('localhost:' + port)
         .get('/')
         //.expect('Content-Type', /json/)
         //.expect('Content-Length', '20')
@@ -31,15 +31,18 @@ describe('server', function () {
 
     it('should return array of links',function(done) {
 
-      this.timeout(10000);
+      //this.timeout(10000);
 
-      request(app)
+      request('http://localhost:'+port)
         .post('/')
+          .send({ url: "http://google.com" })
         //.expect('Content-Type', /json/)
         //.expect('Content-Length', '20')
         .expect(200)
         .end(function(err, res){
           if (err) throw err;
+              console.log('Response:');
+              console.log(res.body);
           done();
         });
 
