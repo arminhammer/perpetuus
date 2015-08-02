@@ -2,8 +2,19 @@
 var debug = require('debug')('expressapp');
 var app = require('../app');
 
-app.set('port', process.env.PORT || 3000);
+var town = require('ghost-town')();
 
-var server = app.listen(app.get('port'), function() {
-  debug('Express server listening on port ' + server.address().port);
-});
+
+if(town.isMaster) {
+    console.log('This is the master thread');
+    app.set('port', process.env.PORT || 9000);
+    var server = app.listen(app.get('port'), function() {
+        debug('Express server listening on port ' + server.address().port);
+    });
+} else {
+    console.log('This is the worker thread');
+    town.on('queue', function(page, data, next) {
+        next(null, data);
+    })
+}
+
