@@ -31,11 +31,11 @@ describe('server', function () {
 
     it('should return array of links',function(done) {
 
-      //this.timeout(10000);
+      this.timeout(30000);
 
       request('http://localhost:'+port)
         .post('/')
-          .send({ url: "http://google.com" })
+          .send(requestDoc)
         //.expect('Content-Type', /json/)
         //.expect('Content-Length', '20')
         .expect(200)
