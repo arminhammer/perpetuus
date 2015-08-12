@@ -11,25 +11,25 @@ var _lib = require('../lib');
 var _lib2 = _interopRequireDefault(_lib);
 
 var simpleTemplate = {
-  url: 'http://google.com'
+  url: 'http://www.google.com/'
 };
 
 var invalidTemplate = {
-  orl: 'http://google.com'
+  orl: 'http://www.google.com/'
 };
 
 var googleTemplate = {
-  url: 'http://google.com',
-  input: [{
-    element: '#lst-ib',
-    val: 'tigers'
+  "url": "http://www.google.com/",
+  "input": [{
+    "element": "#lst-ib",
+    "val": "tigers"
   }],
-  follow: {
-    method: {
-      click: 'button.lsb'
+  "follow": {
+    "method": {
+      "click": "button.lsb"
     },
-    val: {
-      links: '.g > a[href]'
+    "val": {
+      "links": ".g > a[href]"
     }
   }
 };

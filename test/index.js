@@ -3,27 +3,27 @@ import expect from 'expect.js';
 import rubbertiger from '../lib';
 
 var simpleTemplate = {
-  url: 'http://google.com'
+  url: 'http://www.google.com/'
 };
 
 var invalidTemplate = {
-  orl: 'http://google.com'
+  orl: 'http://www.google.com/'
 };
 
 var googleTemplate = {
-  url: 'http://google.com',
-  input: [
+  "url": "http://www.google.com/",
+  "input": [
     {
-      element: '#lst-ib',
-      val: 'tigers'
+      "element": "#lst-ib",
+      "val": "tigers"
     }
   ],
-  follow: {
-    method: {
-      click: 'button.lsb'
+  "follow": {
+    "method": {
+      "click": "button.lsb"
     },
-    val: {
-      links: '.g > a[href]'
+    "val": {
+      "links": ".g > a[href]"
     }
   }
 };
