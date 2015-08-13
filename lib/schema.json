@@ -3,69 +3,58 @@
   "id": "/",
   "type": "object",
   "properties": {
-    "http://www.google.com/": {
-      "id": "http://www.google.com/",
+    "url": {
+      "id": "url",
+      "type": "string"
+    },
+    "input": {
+      "id": "input",
+      "type": "array",
+      "items": {
+        "id": "0",
+        "type": "object",
+        "properties": {
+          "input[name=q]": {
+            "id": "input[name=q]",
+            "type": "string"
+          }
+        }
+      }
+    },
+    "follow": {
+      "id": "follow",
       "type": "object",
       "properties": {
-        "input": {
-          "id": "input",
+        "method": {
+          "id": "method",
+          "type": "object",
+          "properties": {
+            "click": {
+              "id": "click",
+              "type": "string"
+            }
+          }
+        },
+        "val": {
+          "id": "val",
           "type": "array",
           "items": {
             "id": "0",
             "type": "object",
             "properties": {
-              "element": {
-                "id": "element",
+              "links": {
+                "id": "links",
                 "type": "string"
-              },
-              "val": {
-                "id": "val",
-                "type": "string"
-              }
-            },
-            "required": [
-              "element",
-              "val"
-            ]
-          },
-          "required": [
-            "0"
-          ]
-        },
-        "follow": {
-          "id": "follow",
-          "type": "object",
-          "properties": {
-            "method": {
-              "id": "method",
-              "type": "object",
-              "properties": {
-                "click": {
-                  "id": "click",
-                  "type": "string"
-                }
-              }
-            },
-            "val": {
-              "id": "val",
-              "type": "object",
-              "properties": {
-                "links": {
-                  "id": "links",
-                  "type": "string"
-                }
               }
             }
           }
         }
-      },
-      "required": [
-        "input",
-        "follow"
-      ]
+      }
     }
   },
   "required": [
-    "http://www.google.com/"
+    "url",
+    "input",
+    "follow"
   ]
 }
