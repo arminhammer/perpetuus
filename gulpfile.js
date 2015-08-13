@@ -9,11 +9,11 @@ var istanbul = require('gulp-istanbul');
 var nsp = require('gulp-nsp');
 var plumber = require('gulp-plumber');
 var coveralls = require('gulp-coveralls');
-var babel = require('gulp-babel');
+//var babel = require('gulp-babel');
 
 // Initialize the babel transpiler so ES2015 files gets compiled
 // when they're loaded
-require('babel-core/register');
+//require('babel-core/register');
 
 var handleErr = function (err) {
   console.log(err.message);
@@ -35,8 +35,9 @@ gulp.task('nsp', function (cb) {
 });
 
 gulp.task('pre-test', function () {
-  return gulp.src('lib/**/*.js')    .pipe(babel())
-    
+  return gulp.src('lib/**/*.js')
+    //.pipe(babel())
+
     .pipe(istanbul({includeUntested: true}))
     .pipe(istanbul.hookRequire());
 });
@@ -65,11 +66,12 @@ gulp.task('coveralls', ['test'], function () {
     .pipe(coveralls());
 });
 
-gulp.task('babel', function () {
-  return gulp.src('lib/**/*.js')
-    .pipe(babel())
-    .pipe(gulp.dest('dist'));
-});
 
-gulp.task('prepublish', ['nsp', 'babel']);
+//gulp.task('babel', function () {
+  //return gulp.src('lib/**/*.js')
+    //.pipe(babel())
+    //.pipe(gulp.dest('dist'));
+//});
+
+gulp.task('prepublish', ['nsp']);
 gulp.task('default', ['static', 'test', 'coveralls']);

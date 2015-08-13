@@ -1,11 +1,58 @@
 {
   "$schema": "http://json-schema.org/draft-04/schema#",
-  "title": "RubberTiger",
-  "description": "Templated web scraping",
+  "id": "/",
   "type": "object",
   "properties": {
-    "url": "string",
-    "input":"array"
+    "url": {
+      "id": "url",
+      "type": "string"
+    },
+    "input": {
+      "id": "input",
+      "type": "array",
+      "items": {
+        "id": "0",
+        "type": "object",
+        "properties": {
+          "element": {
+            "id": "element",
+            "type": "string"
+          },
+          "val": {
+            "id": "val",
+            "type": "string"
+          }
+        }
+      }
+    },
+    "follow": {
+      "id": "follow",
+      "type": "object",
+      "properties": {
+        "method": {
+          "id": "method",
+          "type": "object",
+          "properties": {
+            "click": {
+              "id": "click",
+              "type": "string"
+            }
+          }
+        },
+        "val": {
+          "id": "val",
+          "type": "object",
+          "properties": {
+            "links": {
+              "id": "links",
+              "type": "string"
+            }
+          }
+        }
+      }
+    }
   },
-  "required": ["url"]
+  "required": [
+    "url"
+  ]
 }

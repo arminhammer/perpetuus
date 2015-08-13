@@ -5,7 +5,7 @@
 
 var rubbertiger = require('../lib/index');
 
-var googleTemplate = {
+var template = {
   "url": "http://www.google.com/",
   "input": [
     {
@@ -23,7 +23,8 @@ var googleTemplate = {
   }
 };
 
-rubbertiger.scrape(template, function(result) {
+rubbertiger.scrape(template).
+  then(function(result) {
 
   console.log('Links from Google:');
   console.log(result);

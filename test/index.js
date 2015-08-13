@@ -1,6 +1,6 @@
 'use strict';
-import expect from 'expect.js';
-import rubbertiger from '../lib';
+var expect = require('expect.js');
+var rubbertiger = require('../lib');
 
 var simpleTemplate = {
   url: 'http://www.google.com/'
