@@ -6,17 +6,15 @@
 var rubbertiger = require('../lib/index');
 
 var template = {
-  "url": "http://www.google.com/",
-  "input": [
-    { "input[name=q]": "tigers" }
-  ],
-  "follow": {
-    "method": {
-      "click": "button.lsb"
+  "url": "https://www.google.com/search",
+  "submit": {
+    "input": {
+      "q": "tigers"
     },
-    "val": [
-      { "links": ".g > a[href]" }
-    ]
+    "button": "button.lsb",
+    "val": {
+      "links": [".r a@href"]
+    }
   }
 };
 
