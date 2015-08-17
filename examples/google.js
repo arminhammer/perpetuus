@@ -18,7 +18,16 @@ var template = {
   }
 };
 
-rubbertiger.scrape(template).
+var options = {
+  driver: "webdriver",
+  webdriverOptions: {
+    desiredCapabilities: {
+      browserName: 'htmlunit'
+    }
+  }
+};
+
+rubbertiger.scrape(template, options).
   then(function(result) {
 
     console.log('Links from Google:');
