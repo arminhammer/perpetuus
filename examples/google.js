@@ -19,7 +19,7 @@ var template = {
 };
 
 var options = {
-  driver: "webdriver",
+  driver: "osmosis",
   webdriverOptions: {
     desiredCapabilities: {
       browserName: 'htmlunit'
