@@ -9,20 +9,23 @@ var template = {
   "url": "https://www.google.com/search",
   "submit": {
     "input": {
-      "q": "tigers"
+      "input[name=q]": "tigers"
     },
     "button": "button.lsb",
     "val": {
-      "links": [".r a@href"]
+      "links": [{
+        "select": "a",
+        "attr": "href"
+      }]
     }
   }
 };
 
 var options = {
-  driver: "osmosis",
+  driver: 'webdriver',
   webdriverOptions: {
     desiredCapabilities: {
-      browserName: 'htmlunit'
+      browserName: 'chrome'
     }
   }
 };
