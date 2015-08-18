@@ -1,21 +1,21 @@
 /**
  * Created by arminhammer on 8/12/15.
  */
-"use strict";
+'use strict';
 
 var rubbertiger = require('../lib/index');
 
 var template = {
-  "url": "https://www.google.com/search",
-  "submit": {
-    "input": {
-      "input[name=q]": "tigers"
+  'url': 'https://www.google.com/search',
+  'submit': {
+    'input': {
+      'input[name=q]': 'tigers'
     },
-    "button": "button.lsb",
-    "val": {
-      "links": [{
-        "select": "a",
-        "attr": "href"
+    'button': 'button.lsb',
+    'val': {
+      'links': [{
+        'select': 'a',
+        'attr': 'href'
       }]
     }
   }

@@ -11,19 +11,19 @@ var invalidTemplate = {
 };
 
 var googleTemplate = {
-  "url": "http://www.google.com/",
-  "input": [
+  'url': 'http://www.google.com/',
+  'input': [
     {
-      "element": "#lst-ib",
-      "val": "tigers"
+      'element': '#lst-ib',
+      'val': 'tigers'
     }
   ],
-  "follow": {
-    "method": {
-      "click": "button.lsb"
+  'follow': {
+    'method': {
+      'click': 'button.lsb'
     },
-    "val": {
-      "links": ".g > a[href]"
+    'val': {
+      'links': '.g > a[href]'
     }
   }
 };
