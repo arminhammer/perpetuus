@@ -7,10 +7,9 @@ var rubbertiger = require('../lib/index');
 
 var template = {
   'url': 'http://www.imdb.com/chart/top',
+  //'waitFor': '//*[@id="main"]/div/span/div/div/div[2]/table/tbody/tr[250]/td[2]/a',
   'val': {
-    'movies': [{
-      'select': '//*[@id="main"]/div/span/div/div/div[2]/table/tbody/tr/td[2]/a'
-    }]
+    'movies': ['//*[@id="main"]/div/span/div/div/div[2]/table/tbody/tr/td[2]/a']
   }
 };
 
@@ -19,7 +18,7 @@ var options = {
   driver: 'webdriver',
   webdriverOptions: {
     desiredCapabilities: {
-      browserName: 'chrome'
+      browserName: 'phantomjs'
     }
   }
 };
