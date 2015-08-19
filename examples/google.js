@@ -9,21 +9,18 @@ var template = {
   'url': 'https://www.google.com/search',
   'submit': {
     'input': {
-      '//*[@id="lst-ib"]': 'tigers'
+      'input#lst-ib': 'tigers'
     },
-    'button': '//*[@id="sblsbb"]/button',
+    'button': 'button.lsb',
     'val': {
-      'links': [{
-        'select': '//*[@id="rso"]/div/div/div/h3/a',
-        'attr': 'href'
-      }]
+      'links': ['a@href']
     }
   }
 };
 
 var options = {
-  //driver: 'osmosis',
-  driver: 'webdriver',
+  driver: 'osmosis',
+  //driver: 'webdriver',
   webdriverOptions: {
     desiredCapabilities: {
       browserName: 'chrome'
