@@ -6,15 +6,15 @@
 var rubbertiger = require('../lib/index');
 
 var template = {
-  'url': 'https://www.google.com',
+  'url': 'https://www.google.com/search',
   'submit': {
     'input': {
-      '#lst-ib': 'tigers'
+      '//*[@id="lst-ib"]': 'tigers'
     },
-    'button': 'button[type=submit]',
+    'button': '//*[@id="sblsbb"]/button',
     'val': {
       'links': [{
-        'select': '#rso > div.srg > div > div > h3 > a',
+        'select': '//*[@id="rso"]/div/div/div/h3/a',
         'attr': 'href'
       }]
     }
@@ -22,6 +22,7 @@ var template = {
 };
 
 var options = {
+  //driver: 'osmosis',
   driver: 'webdriver',
   webdriverOptions: {
     desiredCapabilities: {
