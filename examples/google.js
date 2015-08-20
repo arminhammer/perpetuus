@@ -9,19 +9,22 @@ var template = {
   'url': 'https://www.google.com/search',
   'submit': {
     'input': {
-      'input#lst-ib': 'tigers'
+      'q': 'tigers'
     },
     'button': 'button.lsb',
+    //'waitFor': '.r a@href',
     'val': {
-      'links': ['a@href']
+      'links': ['.r > a@href']
     }
   }
 };
 
 var options = {
-  driver: 'osmosis',
-  //driver: 'webdriver',
+  //driver: 'osmosis',
+  driver: 'webdriver',
   webdriverOptions: {
+    host: "localhost",
+    port: 4444,
     desiredCapabilities: {
       browserName: 'chrome'
     }
