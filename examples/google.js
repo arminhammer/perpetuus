@@ -3,7 +3,7 @@
  */
 'use strict';
 
-var rubbertiger = require('../lib/index');
+var rubbertiger = require('../dist/index');
 
 var template = {
   'url': 'https://www.google.com/search',

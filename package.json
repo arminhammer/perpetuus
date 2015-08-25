@@ -1,6 +1,6 @@
 {
   "name": "rubbertiger",
-  "version": "0.0.0",
+  "version": "0.0.2",
   "description": "Template-based scraping library",
   "homepage": "github.com/arminhammer/rubbertiger",
   "repository": "arminhammer/rubbertiger",
@@ -38,6 +38,6 @@
     "expect.js": "^0.3.1",
     "osmosis": "0.0.8",
     "tv4": "^1.1.12",
-    "webdriverio": "^3.1.0",
+    "webdriverio": "^3.1.0"
   }
 }

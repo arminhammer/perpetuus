@@ -11,6 +11,5 @@
   "noarg": true,
   "undef": true,
   "strict": true,
-  "quotmark": "single",
   "scripturl": true
 }
