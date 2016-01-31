@@ -1,0 +1,5 @@
+GOTO https://www.google.com/
+TYPE INTO #lst-ib VALUE gorilla
+CLICK #tsf > div.tsf-p > div.jsb > center > input[type='submit']nth-child(1)
+WAIT #rso
+RETURN #rso > divnth-child(1) > divnth-child(1) > div > h3 > a

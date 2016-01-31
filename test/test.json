@@ -1,0 +1,8 @@
+{
+  "https://www.google.com/": [
+    { "type": ["#lst-ib", "gorilla"] },
+    { "click": "#tsf > div.tsf-p > div.jsb > center > input[type='submit']:nth-child(1)" },
+    { "wait": "#rso" },
+    { "return": "#rso > div:nth-child(1) > div:nth-child(1) > div > h3 > a" }
+  ]
+}
