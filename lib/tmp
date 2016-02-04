@@ -3,3 +3,12 @@ TYPE INTO #lst-ib VALUE gorilla
 CLICK #tsf > div.tsf-p > div.jsb > center > input[type='submit']nth-child(1)
 WAIT #rso
 RETURN #rso > divnth-child(1) > divnth-child(1) > div > h3 > a
+
+TYPE value INTO select
+PRESS key
+CLICK value
+WAITFOR select
+
+RETURN STRING value AS var
+RETURN ARRAY value AS var
+RETURN OBJECT value AS var
