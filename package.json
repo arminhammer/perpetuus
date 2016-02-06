@@ -42,7 +42,8 @@
     "jquery": "^2.2.0",
     "lodash": "^4.1.0",
     "multer": "^1.1.0",
-    "nightmare": "^2.1.4"
+    "nightmare": "^2.1.4",
+    "vo": "^1.0.3"
   },
   "eslintConfig": {
     "extends": "xo-space",

@@ -12,3 +12,15 @@ WAITFOR select
 RETURN STRING value AS var
 RETURN ARRAY value AS var
 RETURN OBJECT value AS var
+
+ [
+ { "https://www.google.com/": [
+ ["TYPE", "Cattleya Concepcion", "INTO", "#lst-ib"],
+ ["CLICK", "#tsf > div.tsf-p > div.jsb > center > input[type='submit']:nth-child(1)"],
+ ["WAITFOR", "#rso"],
+ ["RETURN", "STRING", "#rso > div:nth-child(1) > div:nth-child(1) > div > h3 > a", "AS", "firstHit"],
+ ["RETURN", "STRING", "#rso > div > div:nth-child(2) > div > h3 > a", "AS", "secondHit"]
+ ]
+ }
+ ]
+
