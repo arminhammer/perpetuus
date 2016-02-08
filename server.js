@@ -77,7 +77,7 @@ app.post('/', function (req, res) {
           var selector = step[2];
           var varName = step[4];
           results[varName] = yield browser.evaluate(function (selector) {
-            return document.querySelector(selector).innerText;
+            return $.trim($(selector).text());
           }, selector);
         } else if(step[0] === "RETURN" && step[1] === "ARRAY" && _.isString(step[2]) && step[3] === "AS" && _.isString(step[4])) {
           var selector = step[2];
