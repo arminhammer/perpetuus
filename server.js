@@ -91,7 +91,14 @@ app.post('/', function (req, res) {
           var selector = step[2];
           var varName = step[4];
           results[varName] = yield browser.evaluate(function (selector) {
-            return document.querySelector(selector).innerText;
+            var array = $(selector).map(function(){
+              return $.trim($(this).text());
+            }).get();
+            var result = {};
+            for(var i=0; i<array.length;i++) {
+              result[i] = array[i];
+            }
+            return result;
           }, selector);
         }
       }
