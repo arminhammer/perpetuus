@@ -48,7 +48,10 @@ app.post('/', function (req, res) {
   }
 
   var hasJquery = false;
-  var browser = new Nightmare({ show: false });
+  var browser = new Nightmare({
+    show: false,
+    waitTimeout: 10000
+  });
   var results = {};
 
   vo(function* () {
@@ -86,7 +89,7 @@ app.post('/', function (req, res) {
             return $(selector).map(function(){
               return $.trim($(this).text());
             }).get();
-        }, selector);
+          }, selector);
         } else if(step[0] === "RETURN" && step[1] === "OBJECT" && _.isString(step[2]) && step[3] === "AS" && _.isString(step[4])) {
           var selector = step[2];
           var varName = step[4];
@@ -105,11 +108,15 @@ app.post('/', function (req, res) {
       yield browser.end();
     }
   })(function (err) {
-    if (err) return console.log(err);
-    res.json({
-      result: results,
-      requestId: crypto.randomBytes(24).toString('hex')
-    });
+    if (err) {
+      console.log(err.stack);
+      res.status(400).send(err.toString());
+    } else {
+      res.json({
+        result: results,
+        requestId: crypto.randomBytes(24).toString('hex')
+      });
+    }
   });
 });
 
