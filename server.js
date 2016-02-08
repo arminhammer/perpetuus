@@ -7,9 +7,19 @@ var app = express();
 var bodyParser = require('body-parser');
 var crypto = require('crypto');
 var vo = require('vo');
+var $ = require('jQuery');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+
+/* Check to see if JQuery is in the page already */
+var checkJquery = function() {
+  if (typeof jQuery === "undefined") {
+    return false;
+  } else {
+    return true;
+  }
+};
 
 app.post('/', function (req, res) {
 
@@ -22,6 +32,8 @@ app.post('/', function (req, res) {
       } else if(step[0] === "CLICK" && _.isString(step[1])) {
       } else if(step[0] === "WAITFOR" && _.isString(step[1])) {
       } else if(step[0] === "RETURN" && step[1] === "STRING" && _.isString(step[2]) && step[3] === "AS" && _.isString(step[4])) {
+      } else if(step[0] === "RETURN" && step[1] === "ARRAY" && _.isString(step[2]) && step[3] === "AS" && _.isString(step[4])) {
+      } else if(step[0] === "RETURN" && step[1] === "OBJECT" && _.isString(step[2]) && step[3] === "AS" && _.isString(step[4])) {
       } else {
         errors.push(step);
       }
@@ -35,6 +47,7 @@ app.post('/', function (req, res) {
     return;
   }
 
+  var hasJquery = false;
   var browser = new Nightmare({ show: false });
   var results = {};
 
@@ -43,14 +56,38 @@ app.post('/', function (req, res) {
       var page = Object.keys(url)[0];
 
       yield browser.goto(page);
+
+      hasJquery = yield browser.evaluate(checkJquery);
+      if(!hasJquery) {
+        yield browser.inject('js', 'node_modules/jquery/dist/jquery.min.js');
+      }
+
       for (let step of url[page]) {
         if(step[0] === "TYPE" && _.isString(step[1]) && step[2] === "INTO" && _.isString(step[3])) {
           yield browser.insert(step[3], step[1]);
         } else if(step[0] === "CLICK" && _.isString(step[1])) {
           yield browser.click(step[1]);
+          hasJquery = yield browser.evaluate(checkJquery);
+          if(!hasJquery) {
+            yield browser.inject('js', 'node_modules/jquery/dist/jquery.min.js');
+          }
         } else if(step[0] === "WAITFOR" && _.isString(step[1])) {
           yield browser.wait(step[1]);
         } else if(step[0] === "RETURN" && step[1] === "STRING" && _.isString(step[2]) && step[3] === "AS" && _.isString(step[4])) {
+          var selector = step[2];
+          var varName = step[4];
+          results[varName] = yield browser.evaluate(function (selector) {
+            return document.querySelector(selector).innerText;
+          }, selector);
+        } else if(step[0] === "RETURN" && step[1] === "ARRAY" && _.isString(step[2]) && step[3] === "AS" && _.isString(step[4])) {
+          var selector = step[2];
+          var varName = step[4];
+          results[varName] = yield browser.evaluate(function (selector) {
+            return $(selector).map(function(){
+              return $.trim($(this).text());
+            }).get();
+        }, selector);
+        } else if(step[0] === "RETURN" && step[1] === "OBJECT" && _.isString(step[2]) && step[3] === "AS" && _.isString(step[4])) {
           var selector = step[2];
           var varName = step[4];
           results[varName] = yield browser.evaluate(function (selector) {
@@ -60,14 +97,13 @@ app.post('/', function (req, res) {
       }
       yield browser.end();
     }
-  })(function (err, result) {
+  })(function (err) {
     if (err) return console.log(err);
     res.json({
       result: results,
       requestId: crypto.randomBytes(24).toString('hex')
     });
   });
-
 });
 
 app.listen(8080, function () {
