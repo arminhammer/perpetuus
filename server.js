@@ -114,6 +114,11 @@ app.post('/', function (req, res) {
   })(function (err) {
     if (err) {
       console.log(err.stack);
+      if(browser) {
+        browser.proc.disconnect();
+        browser.proc.kill();
+        browser.ended = true;
+      }
       res.status(400).send(err.toString());
     } else {
       res.json({
